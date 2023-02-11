@@ -2,8 +2,9 @@ import { db } from "../database/db.js";
 
 export async function getAllGames(req, res){
     try{
-        const result = await db.query("SELECT * FROM games");
-        res.send(result.rows);
+        const { rows: games } = await db.query("SELECT * FROM games");
+        res.send(games);
+        
     } catch (e) {
         console.log(e);
         res.status(500).send("Ocorreu um erro ao obter os jogos!");
